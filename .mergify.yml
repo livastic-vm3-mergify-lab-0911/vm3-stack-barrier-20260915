@@ -1,0 +1,21 @@
+merge_queue:
+  mode: parallel
+  max_parallel_checks: 3
+scopes:
+  source:
+    files:
+      docs:
+        include:
+          - docs/**
+      api:
+        include:
+          - api/**
+  barrier_files:
+    include:
+      - global/**
+queue_rules:
+  - name: default
+    batch_size: 1
+    merge_conditions:
+      - check-success = vm3-never-stack-barrier
+pull_request_rules: []
