@@ -15,7 +15,7 @@ scopes:
       - global/**
 queue_rules:
   - name: default
-    batch_size: 1
+    batch_size: 2
     merge_conditions:
       - check-success = vm3-never-stack-barrier
 pull_request_rules: []
