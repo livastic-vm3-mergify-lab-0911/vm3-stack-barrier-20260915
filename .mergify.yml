@@ -1,6 +1,6 @@
 merge_queue:
-  mode: parallel
-  max_parallel_checks: 3
+  mode: serial
+  max_parallel_checks: 1
 scopes:
   source:
     files:
@@ -14,8 +14,16 @@ scopes:
     include:
       - global/**
 queue_rules:
-  - name: default
+  - name: vm3-direct-allscopes-260927
+    queue_conditions: []
+    merge_conditions: []
     batch_size: 1
-    merge_conditions:
-      - check-success = vm3-never-stack-barrier
-pull_request_rules: []
+    batch_max_wait_time: 30 seconds
+    merge_method: merge
+pull_request_rules:
+  - name: vm3 direct allscopes autoqueue 260927
+    conditions:
+      - title ~= ^VM3 DM ALLSCOPES 260927
+    actions:
+      queue:
+        name: vm3-direct-allscopes-260927
